@@ -31,7 +31,7 @@ return {
 		end
 	},
 	{ "kylechui/nvim-surround", config = true },
-	{ "ThePrimeagen/harpoon" },
+	{ "ThePrimeagen/harpoon", config = true },
 	{ "github/copilot.vim" },
 	{
 		"abecodes/tabout.nvim",
@@ -44,6 +44,8 @@ return {
 	},
 
 	{ "folke/zen-mode.nvim" },
-	{ "norcalli/nvim-colorizer.lua", config = true },
+	{ "norcalli/nvim-colorizer.lua", opts = {
+			'*'
+		} },
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 }

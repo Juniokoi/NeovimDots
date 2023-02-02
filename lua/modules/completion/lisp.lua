@@ -7,7 +7,12 @@ local servers = {
 
 	sumneko_lua = {
 		Lua = {
-			workspace = { checkThirdParty = false },
+			runtime = {
+				version = 'LuaJIT',
+			},
+			workspace = {
+				checkThirdParty = false
+			},
 			telemetry = { enable = false },
 			diagnostics = {
 				globals = { "vim" }

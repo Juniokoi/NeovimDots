@@ -23,20 +23,13 @@ require("lazy").setup({
   },
   defaults = { lazy = false },
   install = { colorscheme = { "kanagawa" } },
-  checker = { enabled = true },
-  diff = {
-    cmd = "terminal_git",
+  checker = {
+    enabled = true,
+    concurrency = 1,
+    frequency = 86400,
+    notify = false,
   },
-  performance = {
-    cache = {
-      enabled = true,
-      -- disable_events = {},
-    },
-  }
-  --ui = {
-    --custom_keys = {
-      --[" "] = function()
-      --end,
-    --},
-  --},
+  change_detection = {
+    enabled = false,
+  },
 })

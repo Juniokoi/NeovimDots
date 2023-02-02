@@ -5,53 +5,34 @@ function config.lsp()
 end
 
 function config.cmp()
-	local cmp_status_ok, cmp, cmp_autopairs, luasnip = pcall(require, "cmp", "nvim-autopairs.completion.cmp", "luasnip")
-	local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-	cmp.setup {
-		snippet = {
-			expand = function(args)
-				luasnip.lsp_expand(args.body)
-			end,
-		},
-		mapping = cmp.mapping.preset.insert({
-		['<C-u>'] = cmp.mapping.scroll_docs(-4),
-		['<C-d>'] = cmp.mapping.scroll_docs(4),
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
-		['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-		['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-		['<C-y>'] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete({ select = false }),
-		}),
-		sources = {
-			{ name = 'nvim_lsp' },
-			{ name = 'luasnip' },
-		},
-	}
-	if not cmp_status_ok then
-		return
-	end
-	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
-end
-
-function config.highlight()
-	local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-	vim.api.nvim_create_autocmd('TextYankPost', {
-		callback = function()
-			vim.highlight.on_yank()
-		end,
-		group = highlight_group,
-		pattern = '*',
-	})
+	require("modules.completion.cmp")
 end
 
 function config.blankline()
 	require('indent_blankline').setup {
-		char = '┊',
+		char = "▏",
+		filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+		space_char_blankline = " ",
+		show_current_context = true,
 		show_trailing_blankline_indent = false,
+
+
+		context_highlight_list = {
+			"ContextBlanklineIndent1",
+			"ContextBlanklineIndent2",
+			"ContextBlanklineIndent3",
+			"ContextBlanklineIndent4",
+			"ContextBlanklineIndent5",
+			"ContextBlanklineIndent6",
+		},
+		char_highlight_list = {
+			"IndentBlanklineIndent1",
+			"IndentBlanklineIndent2",
+			"IndentBlanklineIndent3",
+			"IndentBlanklineIndent4",
+			"IndentBlanklineIndent5",
+			"IndentBlanklineIndent6",
+		},
 	}
 end
 
@@ -67,7 +48,7 @@ function config.gitsigns()
 	}
 end
 
-function config.treesitter() 
+function config.treesitter()
 	require 'modules.completion.treesitter'
 end
 

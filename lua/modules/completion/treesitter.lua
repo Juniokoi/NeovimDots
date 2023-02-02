@@ -1,16 +1,31 @@
 require('nvim-treesitter.configs').setup {
 	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = { 'c_sharp', 'c', 'cpp', 'go', 'lua', 'javascript', 'rust', 'typescript', 'help', 'vim' },
+	ensure_installed = {
+		'bash',
+		'go',
+		'help',
+		'javascript',
+		'json',
+		'lua',
+		'markdown',
+		'markdown_inline',
+		'query',
+		'regex',
+		'rust',
+		'typescript',
+		'yaml',
+		'vim',
+	},
 
 	highlight = { enable = true },
-	indent = { enable = true, disable = { 'python' } },
+	indent = { enable = true },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = '<c-/>',
-			node_incremental = '<c-/>',
-			scope_incremental = '<c-s>',
-			node_decremental = '<c-/>',
+			init_selection = '<C-\\>',
+			node_incremental = '<C-\\>',
+			scope_incremental = '<nop>',
+			node_decremental = '<bs>',
 		},
 	},
 

@@ -1,6 +1,4 @@
-local opts = {
-	neotree = require('modules.utils.nvimtree')
-}
+local conf = require("modules.utils.config")
 
 return {
 	{
@@ -10,14 +8,14 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		cmd = "Neotree",
-		opts = opts.neotree.config()
+		opts = conf.neotree
 	},
-	{ "nvim-lua/plenary.nvim" },
+	{ "akinsho/toggleterm.nvim", opts = conf.toggleterm },
 	{ "tpope/vim-rhubarb" },
-	{ "lewis6991/gitsigns.nvim" },
-	{ "lewis6991/gitsigns.nvim" },
-	{ "moll/vim-bbye" }, -- Close window without messing up with layout
 
+	{ "moll/vim-bbye", cmd = "Bdelete" }, -- Close window without messing up with layout
+
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -27,60 +25,6 @@ return {
 			"nvim-telescope/telescope-frecency.nvim",
 			"kkharji/sqlite.lua"
 		},
-		config = function()
-			local actions = require 'telescope.actions'
-
-			require('telescope').setup {
-
-				extensions = {
-					file_browser = {
-						theme = "ivy",
-						hijack_netrw = true,
-						mappings = {
-							i = {
-								["<esc>"] = false
-							}
-						}
-					}
-				},
-				defaults = {
-					mappings = {
-						i = {
-							--['<C-u>'] = true,
-							--['<C-d>'] = true,
-							["<esc>"] = "close",
-							["<C-j>"] = {
-								actions.move_selection_next, type = "action",
-								opts = { nowait = true, silent = true },
-
-							},
-							["<C-k>"] = {
-								actions.move_selection_previous, type = "action",
-								opts = { nowait = true, silent = true }
-							},
-						},
-						n = {
-
-							["<esc>"] = "close",
-							["<C-j>"] = {
-								actions.move_selection_next, type = "action",
-								opts = { nowait = true, silent = true },
-
-							},
-							["<C-k>"] = {
-								actions.move_selection_previous, type = "action",
-								opts = { nowait = true, silent = true }
-							},
-						},
-					},
-				}
-			}
-
-			pcall(require('telescope').load_extension, 'fzf')
-			pcall(require('telescope').load_extension, 'frecency')
-			pcall(require('telescope').load_extension, 'projects')
-			pcall(require('telescope').load_extension, 'file_browser')
-		end,
+		config = conf.telescope
 	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 }

@@ -1,5 +1,4 @@
-local colors = {
-  bg       = '#202328',
+local colors = { bg       = '#202328',
   fg       = '#bbc2cf',
   yellow   = '#ECBE7B',
   cyan     = '#008080',
@@ -30,7 +29,7 @@ local config = {
     options = {
         component_separators = '',
         section_separators = { left = '', right = '' },
-        disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+        disabled_filetypes = { "alpha", "dashboard", "NvimTree","neo-tree","Neotree", "Outline" },
         ignore_focus = {},
     },
 
@@ -144,28 +143,21 @@ ins_left {
   end,
 }
 
+
 ins_left {
-  -- Lsp server name .
-  function()
-    local msg = 'No Active Lsp'
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
-    if next(clients) == nil then
-      return msg
-    end
-    for _, client in ipairs(clients) do
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
-      end
-    end
-    return msg
-  end,
-  icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
+  function() return require("noice").api.status.mode.get() end,
+  cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
 -- Add components to right sections
+--
+ins_right {
+  function() return require("noice").api.status.command.get() end,
+  cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+  color = { fg = colors.green, gui = 'bold' },
+}
+
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
@@ -199,12 +191,16 @@ ins_right {
 }
 
 ins_right {
+  require("lazy").updates,
+  cond = require("lazy.status").has_updates,
+  color = { fg = colors.green },
+}
+
+ins_right {
   function()
     return '▊'
   end,
   color = mode_colors,
   padding = { left = 1 },
 }
-
-
 return config
