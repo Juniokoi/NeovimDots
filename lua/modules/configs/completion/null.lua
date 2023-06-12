@@ -57,9 +57,9 @@ return function()
 	})
 
 	mason_null_ls.setup({
-		ensure_installed = require("core.settings").null_ls_deps,
 		automatic_installation = false,
 		automatic_setup = true,
 	})
-	-- Load("mason-null-ls").setup_handlers()
+
+	--Load("mason-null-ls").setup_handlers()
 end

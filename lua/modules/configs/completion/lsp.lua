@@ -249,59 +249,6 @@ return function()
 	end
 
 	-- Custom servers
-	require("rust-tools").setup {
-		tools = {
-			inlay_hints = {
-				auto = true,
-				only_current_line = false,
-				show_parameter_hints = false,
-				parameter_hints_prefix = '<- ',
-				other_hints_prefix = '=> ',
-				max_len_align = false,
-				max_len_align_padding = 1,
-				right_align = false,
-				right_align_padding = 4,
-				highlight = 'Comment',
-			},
-			hover_actions = {
-				border = {
-					{ '╭', 'FloatBorder' },
-					{ '─', 'FloatBorder' },
-					{ '╮', 'FloatBorder' },
-					{ '│', 'FloatBorder' },
-					{ '╯', 'FloatBorder' },
-					{ '─', 'FloatBorder' },
-					{ '╰', 'FloatBorder' },
-					{ '│', 'FloatBorder' },
-				},
-				auto_focus = false,
-			},
-		},
-		server = {
-			on_attach = on_attach(),
-			capabilities = capabilities,
-			cmd = {
-				"rustup",
-				"run",
-				"stable",
-				"rust-analyzer"
-			},
-			settings = {
-				["rust-analyzer"] = {
-					procMacro = { enable = true },
-					cargo = {
-						features = { "exercises" },
-						allFeatures = true
-					},
-					staticcheck = true,
-					checkOnSave = {
-						command = "clippy",
-						extraArgs = { "--no-deps" },
-					},
-				},
-			},
-		},
-	}
 
 	require("go").setup({
 		disable_defaults = false,

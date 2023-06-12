@@ -1,5 +1,5 @@
-local bind = require("keymap.bind")
-local map_callback = bind.map_callback
+local bind = require("core.keymaps.bind")
+local map_callback = bind.load_mapping
 
 local crates_keymap = {
 	["n|<leader>ct"] = map_callback(function()

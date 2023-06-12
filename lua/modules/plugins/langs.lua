@@ -20,7 +20,7 @@ langs["simrat39/rust-tools.nvim"] = {
 		{ 'ray-x/lsp_signature.nvim' },
 		"nvim-lua/plenary.nvim"
 	},
-	opts = { }
+	config = Load("langs.rust"),
 }
 
 langs["Saecki/crates.nvim"] = {

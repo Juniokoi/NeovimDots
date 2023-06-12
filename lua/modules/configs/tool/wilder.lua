@@ -10,11 +10,6 @@ return function()
 		previous_key = '<C-k>',
 		accept_key = '<C-l>',
 	})
-	wilder.setup({
-		next_key = '<Tab>',
-		previous_key = '<S-Tab>',
-		accept_key = '<CR>',
-	})
 	wilder.set_option("use_python_remote_plugin", 0)
 	wilder.set_option("pipeline", {
 		wilder.branch(

@@ -27,12 +27,10 @@ tool['tpope/vim-sleuth'] = {}
 
 tool["gelguy/wilder.nvim"] = {
 	event = "CmdlineEnter",
-	config = require("tool.wilder"),
+	config = Load("tool.wilder"),
 	dependencies = { "romgrk/fzy-lua-native" },
 }
 
-
-tool['wakatime/vim-wakatime'] = {}
 tool['nvim-treesitter/nvim-treesitter'] = {
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter-textobjects',
@@ -42,14 +40,6 @@ tool['nvim-treesitter/nvim-treesitter'] = {
 
 tool['numToStr/Comment.nvim'] = {}
 tool['folke/which-key.nvim'] = {}
-tool['hrsh7th/nvim-cmp'] = {
-	dependencies = {
-		'L3MON4D3/LuaSnip',
-		'saadparwaiz1/cmp_luasnip',
-		'hrsh7th/cmp-nvim-lsp',
-		'rafamadriz/friendly-snippets',
-	},
-}
 tool['kylechui/nvim-surround'] = {
 	event = "VeryLazy",
 	config = true,

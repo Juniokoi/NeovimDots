@@ -1,3 +1,3 @@
 return function()
-	require("copilot_cmp").setup({})
+	Load("copilot_cmp").setup()
 end

@@ -8,6 +8,10 @@ editor['nvim-treesitter/nvim-treesitter'] = {
 	config = require('editor.treesitter'),
 }
 
+editor[ 'numToStr/Comment.nvim']={ opts = {} }
+editor['j-hui/fidget.nvim']= { tag="legacy", opts = {} }
+editor['m4xshen/autoclose.nvim'] = {event="InsertEnter",config=true}
+
 editor['lewis6991/gitsigns.nvim'] = {
 	opts = {
 		-- See `:help gitsigns.txt`

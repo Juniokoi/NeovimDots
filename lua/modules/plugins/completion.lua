@@ -17,21 +17,44 @@ comp['neovim/nvim-lspconfig'] = {
 	}
 }
 
-comp['jose-elias-alvarez/null-ls.nvim'] = {
-	event = { 'BufReadPre', 'BufNewFile' },
+comp["jay-babu/mason-null-ls.nvim"] = {
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		"williamboman/mason.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
+	},
 	config = Load('completion.null'),
+}
+
+comp['hrsh7th/nvim-cmp'] = {
+	event = "InsertEnter",
+	dependencies = {
+		{
+			"L3MON4D3/LuaSnip",
+			dependencies = { "rafamadriz/friendly-snippets" },
+			config = require("completion.luasnip"),
+		},
+		{ "lukas-reineke/cmp-under-comparator" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-nvim-lua" },
+		{ "andersevenrud/cmp-tmux" },
+		{ "hrsh7th/cmp-path" },
+		{ "f3fora/cmp-spell" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "kdheepak/cmp-latex-symbols" },
+		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
+	},
+	config = Load('completion.cmp')
 }
 
 comp["zbirenbaum/copilot.lua"] = {
 	lazy = true,
 	cmd = "Copilot",
 	event = "InsertEnter",
-	config = Load("completion.copilot"),
+	config = true,
 	dependencies = {
-		{
-			"zbirenbaum/copilot-cmp",
-			config = Load("completion.copilot_cmp"),
-		},
+		{ "zbirenbaum/copilot-cmp", config = true },
 	},
 }
 

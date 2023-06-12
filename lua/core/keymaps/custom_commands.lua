@@ -87,7 +87,7 @@ vim.api.nvim_create_user_command('Format', function(o)
 end, { desc = 'Format current buffer with LSP' })
 
 local M = {}
-local path = '~/.dotfiles/neovim'
+local path = '~/.config/nvim'
 
 function M.edit_keymaps() vim.cmd("e " .. path .. "/lua/core/keymaps/init.lua") end
 function M.edit_custom() vim.cmd('e ' .. path .. '/lua/core/keymaps/custom_commands.lua') end

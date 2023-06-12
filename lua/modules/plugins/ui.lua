@@ -1,11 +1,11 @@
 local ui = {}
 
-ui['lukas-reineke/indent-blankline.nvim'] = {
-	opts = {
-		char = '┊',
-		show_trailing_blankline_indent = false,
-	},
-}
+--ui['lukas-reineke/indent-blankline.nvim'] = {
+	--opts = {
+		--char = '┊',
+		--show_trailing_blankline_indent = false,
+	--},
+--}
 
 ui["RRethy/vim-illuminate"] = {
 	event = "BufRead",
@@ -15,10 +15,14 @@ ui["RRethy/vim-illuminate"] = {
 
 ui["goolord/alpha-nvim"] = {
 	event = "VimEnter",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	config = function ()
 		require'alpha'.setup(require'alpha.themes.startify'.config)
-    end
+	end
+}
+ui['nvim-lualine/lualine.nvim'] = {
+	event = "BufRead",
+	config = Load('ui.lualine')
 }
 
 ui['rose-pine/neovim'] = {
@@ -26,6 +30,11 @@ ui['rose-pine/neovim'] = {
 	name = 'rose-pine',
 	event = 'VimEnter',
 	config = function()
+		require('rose-pine').setup {
+			 	disable_background = true,
+				disable_float_background = true,
+				dim_nc_background = true,
+		}
 		vim.cmd.colorscheme 'rose-pine'
 	end
 }

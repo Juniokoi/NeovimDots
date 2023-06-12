@@ -1,9 +1,8 @@
 local function load_core()
-	require('core.functions')
-	require("core.options")
-	require("core.settings")
-	require("core.keymaps")
-	require("core.lazy")
+	Load("core.options")
+	Load("core.settings")
+	Load("core.keymaps")
+	Load("core.lazy")
 end
 
 load_core()
